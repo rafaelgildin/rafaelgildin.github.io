@@ -1,8 +1,13 @@
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #3498db;
-    --text-color: #333;
-    --background-color: #f5f6fa;
+    --primary-color: #1a1a2e;
+    --secondary-color: #0c47e8;
+    --accent-color: #45e9ce;
+    --text-color: #0f3460;
+    --background-color: #f7f7f7;
+    --card-background: #ffffff;
+    --transition: all 0.3s ease;
+    --gradient-start: #0061FF;    /* Bright blue */
+    --gradient-end: #60EFFF;      /* Light turquoise */
 }
 
 * {
@@ -12,111 +17,420 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
 header {
-    background-color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    padding: 60px 0;
+    padding: 30px 0;
     text-align: center;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    transform-style: preserve-3d;
+    transition: transform 0.2s ease-out;
+    perspective: 1000px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
 }
 
 .social-links {
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .social-links a {
     color: white;
-    font-size: 24px;
-    margin: 0 10px;
-    transition: color 0.3s;
+    font-size: 28px;
+    margin: 0 15px;
+    transition: var(--transition);
+    opacity: 0.9;
+    text-decoration: none;
+    pointer-events: auto;
 }
 
 .social-links a:hover {
-    color: var(--secondary-color);
+    color: var(--accent-color);
+    transform: translateY(-3px);
+    opacity: 1;
 }
 
 .profile-photo {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    margin: 20px 0;
+    margin: 0 auto 20px;
+    display: block;
     object-fit: cover;
-    border: 4px solid var(--secondary-color);
+    border: 4px solid var(--accent-color);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: var(--transition);
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+    border-color: var(--secondary-color);
 }
 
 section {
-    padding: 60px 0;
+    padding: 80px 0;
     text-align: center;
 }
 
 h2 {
     color: var(--primary-color);
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--accent-color);
+    border-radius: 2px;
 }
 
 .experience-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.experience-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-}
-
-.experience-card:hover {
-    transform: translateY(-5px);
-}
-
-.experience-card img {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-    margin-bottom: 15px;
-}
-
-.skills-grid {
-    display: flex;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(3, minmax(300px, 1fr));
+    gap: 40px;
+    margin: 50px auto;
+    max-width: 1200px;
     justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
 }
 
-.skill {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-size: 0.9em;
+/* Style for even number of cards */
+.experience-grid.even {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
 }
 
-footer {
-    background-color: var(--primary-color);
-    color: white;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 60px;
+/* First row in even layout */
+.experience-grid.even > *:first-child:nth-last-child(4),
+.experience-grid.even > *:first-child:nth-last-child(4) ~ * {
+    grid-column: span 1;
+}
+
+/* Center card in first row for 4 items */
+.experience-grid.even > *:first-child:nth-last-child(4) ~ *:nth-child(1) {
+    grid-column: 1 / 3;
+    justify-self: center;
+    max-width: 400px;
+}
+
+/* For 6 items */
+.experience-grid.even > *:first-child:nth-last-child(6),
+.experience-grid.even > *:first-child:nth-last-child(6) ~ * {
+    grid-column: span 1;
+}
+
+/* Center card in first row for 6 items */
+.experience-grid.even > *:first-child:nth-last-child(6) ~ *:nth-child(1) {
+    grid-column: 1 / 3;
+    justify-self: center;
+    max-width: 400px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .experience-grid {
+        grid-template-columns: repeat(2, minmax(280px, 1fr));
+    }
 }
 
 @media (max-width: 768px) {
     .experience-grid {
         grid-template-columns: 1fr;
+        max-width: 400px;
     }
+    
+    .experience-grid.even > *:first-child:nth-last-child(n+1) {
+        grid-column: 1;
+    }
+}
+
+.experience-card {
+    background: linear-gradient(135deg, var(--primary-color), #45e9ce);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(69, 233, 206, 0.1);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: none;
+    color: white;
+}
+
+.experience-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(69, 233, 206, 0.2);
+}
+
+.experience-card h3 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+.experience-card p {
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 0.9;
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin: 30px 0;
+}
+
+.skill {
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 0.95em;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(12, 71, 232, 0.2);
+}
+
+.skill:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(12, 71, 232, 0.3);
+}
+
+.skill-description {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 300px;
+    background: white;
+    color: var(--text-color);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    font-size: 0.9em;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    text-align: left;
+    margin-top: 15px;
+    pointer-events: none;
+}
+
+.skill:hover .skill-description {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .skill-description {
+        width: 250px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .skill:hover .skill-description {
+        transform: translateX(-50%) translateY(5px);
+    }
+}
+
+footer {
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 80px;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 60px 0;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .profile-photo {
+        width: 150px;
+        height: 150px;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .experience-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .skill {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 40px 0;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .experience-card {
+        padding: 20px;
+    }
+}
+
+/* Keep content stable */
+header .container,
+.experience-card > *,
+.skill > * {
+    transform: translateZ(50px);
+    pointer-events: none; /* Ensures smooth mouse tracking */
+}
+
+/* Improve performance */
+header,
+.experience-card,
+.skill {
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Optional: Add subtle shadow on hover */
+.experience-card:hover,
+.skill:hover {
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+#canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.7;  /* Make the effect slightly more subtle */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.about-content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .experience-card {
+        padding: 20px;
+    }
+}
+
+/* Skill tooltip modifications */
+.skill-tooltip {
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    color: white;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    font-size: 0.9em;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    text-align: center;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+/* Remove problematic pointer-events none */
+.skill > * {
+    pointer-events: auto;
+}
+
+/* Show tooltip only on hover */
+.skill:hover .skill-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Specific style for education card to keep it white */
+.education .experience-card {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: var(--text-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.education .experience-card h3 {
+    color: var(--primary-color);
+}
+
+.education .experience-card p {
+    color: var(--text-color);
+    opacity: 1;
+}
+
+.about-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+.about-content p {
+    color: var(--text-color);
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1em;
+    line-height: 1.8;
 } 

@@ -3,59 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Professional Portfolio</title>
+    <title>Rafael Gildin - Data Scientist</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <canvas id="canvas"></canvas>
+    
     <header>
-        <div class="container">
-            <h1>Your Name</h1>
-            <p>Professional Title</p>
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/rafael-gildin/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/rafaelgildin" target="_blank"><i class="fab fa-github"></i></a>
+        <div class="container header-content">
+            <div class="profile-section">
+                <img src="images/personal.jpeg" alt="Rafael Gildin" class="profile-photo logo">
+            </div>
+            <div class="text-section">
+                <h1>Rafael Gildin</h1>
+                <p>Lead Data Scientist</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/rafael-gildin/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://github.com/rafaelgildin" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </header>
 
     <section class="about container">
-        <img src="images/personal.jpeg" alt="Your Photo" class="profile-photo">
         <h2>About Me</h2>
-        <p>Write a brief introduction about yourself and your professional journey here.</p>
+        <p>As a Lead Data Scientist at PMY, I am responsible for developing and deploying machine learning models within the Google Cloud Platform. My role involves continuous exploration and implementation of cutting-edge technologies to ensure reproducibility, scalability, security, and cost efficiency.</p>
     </section>
 
     <section class="experience container">
-        <h2>Professional Experience</h2>
+        <h2>Key Contributions</h2>
         <div class="experience-grid">
             <div class="experience-card">
-                <img src="company1-logo.jpg" alt="Company 1">
-                <h3>Job Title</h3>
-                <h4>Company Name</h4>
-                <p class="date">2020 - Present</p>
-                <p>Description of your role and achievements.</p>
+                <h3>Model Development</h3>
+                <p>Developed predictive models to forecast key performance indicators (KPIs) and delivered detailed performance analyses to ensure their effectiveness and reliability.</p>
             </div>
-            <!-- Add more experience cards as needed -->
+            <div class="experience-card">
+                <h3>Data Visualization</h3>
+                <p>Presented complex data insights through intuitive visualizations, making it accessible for stakeholders to understand and act upon.</p>
+            </div>
+            <div class="experience-card">
+                <h3>Analytics Dashboard</h3>
+                <p>Created and maintained analytical dashboards to monitor and disseminate data from models and products.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="impact container">
+        <h2>Business Impact</h2>
+        <div class="experience-grid">
+            <div class="experience-card">
+                <h3>Data-Driven Strategy</h3>
+                <p>Utilized data to drive business value by transforming insights into actionable strategies.</p>
+            </div>
+            <div class="experience-card">
+                <h3>Trend Analytics</h3>
+                <p>Leveraged trend analytics to provide comprehensive data-driven recommendations.</p>
+            </div>
+            <div class="experience-card">
+                <h3>Communication</h3>
+                <p>Ensured clear communication of findings through visual presentations, enhancing decision-making processes.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="education container">
+        <h2>Education</h2>
+        <div class="about-content">
+            <p style="color: var(--text-color); font-size: 1.1em; line-height: 1.8;">
+                Bachelor's degree in Computer Science from Mackenzie. 
+                <br>
+                Currently pursuing Google Cloud Platform certifications. 
+                <br>
+                Active participant in Kaggle competitions.
+            </p>
         </div>
     </section>
 
     <section class="skills container">
         <h2>Skills</h2>
         <div class="skills-grid">
-            <div class="skill">JavaScript</div>
+            <div class="skill">Machine Learning</div>
+            <div class="skill">Data Science</div>
             <div class="skill">Python</div>
-            <div class="skill">React</div>
-            <div class="skill">Node.js</div>
-            <!-- Add more skills as needed -->
+            <div class="skill">Google Cloud Platform</div>
+            <div class="skill">Data Visualization</div>
+            <div class="skill">Deep Learning</div>
+            <div class="skill">Data Engineering</div>
+            <div class="skill">SQL</div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Your Name. All rights reserved.</p>
+            <p>© 2024 Rafael Gildin. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.9/dat.gui.min.js"></script>
 </body>
 </html>
